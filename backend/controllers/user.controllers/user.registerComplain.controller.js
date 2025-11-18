@@ -59,12 +59,12 @@ const registerUserComplain = (req, res) => {
                 if (err) {
                     console.error('❌ Error registering complaint:', err);
                     return res.status(500).json({ error: 'Database error while registering complaint: ' + err.message });
-                }
+                }console.log(result);
                 console.log('✅ Complaint registered successfully with ID:', result.insertId);
                 console.log("=== COMPLAINT REGISTRATION COMPLETED ===");
                 res.status(201).json({
                     message: 'Complaint registered successfully.',
-                    complaintId: result.insertId
+                    complaint: result
                 });
             });
         });

@@ -19,8 +19,10 @@
 
 const db = require('../../database/dbConnect');
 const trackUserComplain = (req, res) => {
-    const userId = req.user.id; // Assuming user ID is stored in req.user after authentication
-
+    const userId = req.user.user_id; // Assuming user ID is stored in req.user after authentication
+    console.log("----------------------");
+    console.log(req.user.user_id);
+    console.log("----------------------");
     // Database query to fetch complaints for the user
     const query = 'SELECT * FROM Complaint WHERE user_id = ?';
     db.query(query, [userId], (err, results) => {
@@ -28,7 +30,9 @@ const trackUserComplain = (req, res) => {
             console.error('Error fetching complaints:', err);
             return res.status(500).json({ message: 'Internal server error' });
         }
+        console.log("*****************");
         console.log(results);
+        console.log("*****************");
         return res.status(200).json({ complaints: results });
     });
 };
